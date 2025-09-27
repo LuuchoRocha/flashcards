@@ -1,3 +1,4 @@
+import {Level} from '../types/Level';
 import {WordPart} from '../types/WordPart';
 
 export const getPhonicLevels = async () => {
@@ -10,7 +11,7 @@ export const getPhonicLevels = async () => {
   return response.json();
 };
 
-export const getWordParts = async (levelId: string) => {
+export const getWordParts = async (levelId: Level['id']) => {
   const response = await fetch(`/phonics_levels/${levelId}/word_parts`);
 
   if (!response.ok) {
@@ -20,7 +21,11 @@ export const getWordParts = async (levelId: string) => {
   return response.json();
 };
 
-export const updateWordPart = async (levelId: string, wordPartId: string, data: {status: WordPart['status']}) => {
+export const updateWordPart = async (
+  levelId: Level['id'],
+  wordPartId: WordPart['id'],
+  data: {status: WordPart['status']},
+) => {
   const response = await fetch(`/phonics_levels/${levelId}/word_parts/${wordPartId}`, {
     method: 'PUT',
     headers: {

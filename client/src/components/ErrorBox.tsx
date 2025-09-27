@@ -1,4 +1,4 @@
-const ErrorBox = ({error, onRetry}: {error: string; onRetry: () => void}) => {
+const ErrorBox: React.FC<{error: string; onRetry: () => void}> = ({error, onRetry}) => {
   return (
     <>
       <p className="text-red-500">Error: {error}</p>

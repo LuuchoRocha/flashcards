@@ -1,14 +1,16 @@
-import { Level } from "../types/Level.ts"
+import {Level} from '../types/Level.ts';
 
-const LevelOptions = ({ levels }: { levels: Level[] }) => {
-  return <>
-    <option value="">Select a level</option>
-    {levels.map((level) => (
-      <option value={level.id} key={level.id}>
-        Level {level.level_number}
-      </option>
-    ))}
-  </>
-}
+const LevelOptions: React.FC<{levels: Level[]}> = ({levels}) => {
+  return (
+    <>
+      <option value="">Select a level</option>
+      {levels.map((level) => (
+        <option value={level.id} key={level.id}>
+          Level {level.level_number}
+        </option>
+      ))}
+    </>
+  );
+};
 
 export default LevelOptions;
