@@ -1,5 +1,5 @@
 class WordPartsController < ApplicationController
-  before_action :set_current_word_part, only: [:show, :update]
+  before_action :set_current_word_part, only: [ :show, :update ]
 
   def index
     @phonics_level = PhonicsLevel.find(params[:phonics_level_id])
