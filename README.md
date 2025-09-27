@@ -1,81 +1,74 @@
-# Take-home test: Flashcards
+# Take-home Test: Flashcards
 
 ## Description
 
-This is the starts of a simple flashcards app designed to help early learners of English
-to identify some common English phonics sounds.
+This is a simple flashcards app designed to help early learners of English identify common phonics sounds.
 
 The app has two components:
 
-* a Rails-based API
-* a React-based front-end
+* A Rails-based API
+* A React-based front-end
 
-See [Installation](#installation) for instructions on setting up the app.
+Originally, the app requested a list of levels and displayed flashcards for the selected level. Flashcards could be clicked to show a larger view, and two buttons (**Needs Work** and **Got It**) were displayed but not functional.
 
-In its current state, the app requests a list of levels from the server and creates a dropdown list of levels. When a
-level is selected, the app requests a list of flashcards for that level and displays them. Clicking on a flashcard
-displays it in larger size underneath all the flashcards.
+### Updates and Enhancements
 
-Along with the flashcard display are two buttons: **Needs Work** and **Got It**. These are not currently hooked up to
-any functionality.
+This submission includes the following enhancements:
 
-## Your task
+**Full functionality for response buttons:**
 
-Implement the **Needs Work** and **Got It** buttons so that they record the user's response to the flashcard.
+* **Needs Work** and **Got It** buttons now record the user's response.
+* Clicking a button updates the flashcard’s color in the level list:
 
-When the user clicks either of the buttons, the app should:
+  * Green for **Got It** (`mastered`)
+  * Red for **Needs Work** (`needs_work`)
+* Responses are persisted to the Rails backend in the `status` field.
+* Statuses persist across page refreshes and level changes.
 
-* colour the flashcard in the levels list according to the user's response (green for **Got It**, red for **Needs Work**).
-* send a request to the server to record the user's response.
+**User Experience Enhancements:**
 
-The endpoint to update the server does not exist yet. You should create one that records the user's response in the
-`ststus` field of the relevant word part record.
+* Smooth animations when flashcards change color.
+* Optimistic UI updates for immediate visual feedback.
+* Retry buttons for failed requests.
+* Graceful error handling for server or network errors.
 
-When refreshing the page or selecting a different level, the app should correctly colour the user's responses in the
-list of word parts.
+**Testing and Quality Assurance:**
+
+* **Rails controller tests** for `index`, `show`, and `update` actions.
+* **Rails model tests** ensuring the `status` enum is correctly defined and validated.
+* **React component tests** for button interactions and state updates.
 
 ## Installation
 
-You may download a copy of this repository from the GitHub page, or from [this link](https://github.com/innovationsforlearning/takehome-test/archive/refs/heads/main.zip). 
-You can also fork the repoistory if you wish.
-
-You will find the Rails API in the `server` directory and the React front-end in the `client` directory.
+The Rails API is in the `server` directory and the React front-end in the `client` directory.
 
 ### Setting up the Rails app
 
-```shell
-$ cd server
-$ bundle install
-$ bin/setup
+```bash
+cd server
+bundle install
+bin/setup
 ```
-
-NB: The app's `.ruby-version` is currently set to Ruby 3.2.0. If you don't have this version installed, you can change
-the `.ruby-version` file to a version you have installed.
 
 ### Setting up the React app
 
-```shell
-$ cd client
-$ npm install
+```bash
+cd client
+npm install
 ```
+
+---
 
 ## Running the app
 
-Both client and server apps will need to running for the app to work, e.g.:
+Both server and client need to run simultaneously:
 
-```shell
-# Rails
-$ cd server
-$ bin/dev
+```bash
+# Rails server
+cd server
+bin/dev
 
-# React
-$ cd client
-$ npm run dev
+# React client
+cd client
+npm run dev
 ```
-
-### Submitting your work
-
-Either:
-
-* Upload your amended application to a public repository on your GitHub account; or
-* Save it as a ZIP file, ensuring that the `.git` directory is included, and email it to your contact.
