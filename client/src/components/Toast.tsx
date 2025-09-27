@@ -28,7 +28,7 @@ const Toast: FC<ToastProps> = ({message, onClose, duration = 1000}) => {
   }, [duration, onClose]);
 
   return createPortal(
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="fixed inset-0 flex items-center justify-center z-50" role="alert">
       <div
         className={`bg-white p-4 rounded shadow-lg transition-all duration-300 ${
           isVisible ? 'scale-100 opacity-100' : 'scale-50 opacity-0'

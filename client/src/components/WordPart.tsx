@@ -1,7 +1,7 @@
 import {useCallback} from 'react';
 import {WordPart as WordPartType} from '../types/WordPart.ts';
 
-const BASE_CLASSES = 'mr-2 mb-2 px-2 py-1 border rounded hover:bg-gray-200 cursor-pointer';
+const BASE_CLASSES = 'px-2 py-1 border rounded hover:bg-gray-200 cursor-pointer transition-colors';
 
 const getClassesForStatus = (status: WordPartType['status']) => {
   if (status === 'mastered') {
@@ -20,6 +20,7 @@ const WordPart: React.FC<{wordPart: WordPartType; onClick: (id: number) => void}
     <button
       key={wordPart.id}
       type="button"
+      role="button"
       className={`${BASE_CLASSES} ${getClassesForStatus(wordPart.status)}`}
       onClick={handleClick}>
       {wordPart.label}

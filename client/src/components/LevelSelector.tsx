@@ -36,19 +36,18 @@ const LevelSelector = () => {
   }, [fetchLevels]);
 
   return (
-    <div>
-      <h1 className="text-2xl my-4">Phonics Level</h1>
-      {error ? (
-        <ErrorBox error={error} onRetry={handleRetry} />
-      ) : (
-        <>
+    <div className="w-full max-w-4xl mx-auto p-2 space-y-2">
+      <div className="p-4 rounded bg-white shadow-lg">
+        <h1 className="text-2xl my-4 font-bold">Phonics Level</h1>
+        {error ? (
+          <ErrorBox error={error} onRetry={handleRetry} />
+        ) : (
           <select value={level} onChange={handleLevelChange} className="w-full mb-4 shadow p-1">
             <LevelOptions levels={levels} />
           </select>
-          <hr />
-        </>
-      )}
-      {level && <WordPartsList levelId={level} />}
+        )}
+      </div>
+      {level && <WordPartsList levelId={Number(level)} />}
     </div>
   );
 };

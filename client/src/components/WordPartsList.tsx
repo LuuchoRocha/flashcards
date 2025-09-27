@@ -76,16 +76,17 @@ const WordPartsList: FC<WordPartsViewProps> = ({levelId}) => {
   }, [fetchWordParts]);
 
   return (
-    <div className="my-4">
-      <h2 className="text-xl mb-4">Word Parts</h2>
+    <div className="p-4 rounded bg-white shadow-lg">
+      <h2 className="text-xl mb-4 font-bold">Word Parts</h2>
       {error ? (
         <ErrorBox error={error} onRetry={handleRetry} />
       ) : (
         <>
-          {wordParts.map((wordPart) => (
-            <WordPart wordPart={wordPart} onClick={handleWordPartClick} key={wordPart.id} />
-          ))}
-          <hr />
+          <div className="space-x-2">
+            {wordParts.map((wordPart) => (
+              <WordPart wordPart={wordPart} onClick={handleWordPartClick} key={wordPart.id} />
+            ))}
+          </div>
           {selectedWordPart && (
             <WordPartDetail wordPart={selectedWordPart} onNeedsWork={handleNeedsWork} onMastered={handleMastered} />
           )}
