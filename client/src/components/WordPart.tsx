@@ -1,14 +1,26 @@
 import {useCallback} from 'react';
 import {WordPart as WordPartType} from '../types/WordPart.ts';
 
-const WordPart = ({wordPart, onClick}: {wordPart: WordPartType; onClick: (id: number) => void}) => {
+const BASE_CLASSES = 'mr-2 mb-2 px-2 py-1 border rounded hover:bg-gray-200 cursor-pointer';
+
+const getClassesForStatus = (status: WordPartType['status']) => {
+  if (status === 'mastered') {
+    return 'bg-green-100 border-green-400';
+  } else if (status === 'needs_work') {
+    return 'bg-red-100 border-red-400';
+  } else {
+    return '';
+  }
+};
+
+const WordPart: React.FC<{wordPart: WordPartType; onClick: (id: number) => void}> = ({wordPart, onClick}) => {
   const handleClick = useCallback(() => onClick(wordPart.id), [onClick, wordPart.id]);
 
   return (
     <button
       key={wordPart.id}
       type="button"
-      className="mr-2 mb-2 px-2 py-1 border rounded hover:bg-gray-200 cursor-pointer"
+      className={`${BASE_CLASSES} ${getClassesForStatus(wordPart.status)}`}
       onClick={handleClick}>
       {wordPart.label}
     </button>
