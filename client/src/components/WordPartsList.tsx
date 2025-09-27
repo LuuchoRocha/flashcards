@@ -72,8 +72,8 @@ const WordPartsList: FC<WordPartsViewProps> = ({levelId}) => {
   }, []);
 
   useEffect(() => {
-    fetchWordParts();
-  }, [fetchWordParts]);
+    handleRetry();
+  }, [handleRetry]);
 
   return (
     <div className="p-4 rounded bg-white shadow-lg">
